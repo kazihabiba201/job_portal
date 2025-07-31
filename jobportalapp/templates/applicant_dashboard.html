@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Your Applications</h2>
+<ul class="list-group">
+    {% for app in applications %}
+        <li class="list-group-item">
+            <strong>{{ app.job.title }}</strong> at {{ app.job.company_name }}, {{ app.job.location}}
+            <br><small>Applied at: {{ app.applied_at }}</small>
+               <a href="{% url 'apply_job' app.job.id %}" class="btn btn-outline-primary btn-sm mt-2 mt-md-0">
+                    Apply Job
+                </a>
+                 <p><strong>Job Description:</strong></p>
+                    <p>{{ app.job.description|linebreaks }}</p>
+        </li>
+    {% empty %}
+      <li class="list-group-item">
+    You haven't applied for any jobs yet.
+    <a href="{% url 'job_list' %}" class="btn btn-outline-success btn-sm mt-2">
+        Apply Jobs
+    </a>
+</li>
+        
+        
+    {% endfor %}
+</ul>
+{% endblock %}
