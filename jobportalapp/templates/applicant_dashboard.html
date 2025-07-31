@@ -7,8 +7,8 @@
         <li class="list-group-item">
             <strong>{{ app.job.title }}</strong> at {{ app.job.company_name }}, {{ app.job.location}}
             <br><small>Applied at: {{ app.applied_at }}</small>
-               <a href="{% url 'apply_job' app.job.id %}" class="btn btn-outline-primary btn-sm mt-2 mt-md-0">
-                    Apply Job
+               <a href="{% url 'job_list' %}" class="btn btn-outline-primary btn-sm mt-2 mt-md-0">
+                    View more jobs
                 </a>
                  <p><strong>Job Description:</strong></p>
                     <p>{{ app.job.description|linebreaks }}</p>
