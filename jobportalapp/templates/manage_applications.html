@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-4">Applications for: {{ job.title }}</h3>
+<ul class="list-group">
+    {% for app in applications %}
+    <li class="list-group-item">
+        <strong>{{ app.applicant.username }}</strong><br>
+        Resume: <a href="{{ app.resume.url }}" target="_blank">Download</a><br>
+        <strong>Cover Letter:</strong><br>{{ app.cover_letter }}<br>
+        <strong>Status:</strong>
+        <span class="
+            {% if app.status == 'approved' %}text-success
+            {% elif app.status == 'rejected' %}text-danger
+            {% else %}text-secondary{% endif %}
+        ">
+            {{ app.status|capfirst }}
+        </span>
+
+        {% if app.status == 'pending' %}
+        <form method="post" class="mt-2 d-inline">
+            {% csrf_token %}
+            <input type="hidden" name="app_id" value="{{ app.id }}">
+            <button name="action" value="approve" class="btn btn-success btn-sm">Approve</button>
+            <button name="action" value="reject" class="btn btn-danger btn-sm">Reject</button>
+        </form>
+        {% endif %}
+    </li>
+    {% empty %}
+    <li class="list-group-item">No applications yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

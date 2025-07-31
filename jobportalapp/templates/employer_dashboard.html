@@ -35,6 +35,8 @@
                                                     <a href="{{ application.resume.url }}" class="btn btn-sm btn-outline-success" target="_blank">
                                                         View Resume
                                                     </a>
+                                                    <a href="{% url 'manage_applications' job.id %}" class="btn btn-outline-secondary btn-sm mt-2">Manage Applications</a>
+
                                                 {% endif %}
                                             </li>
                                         {% endfor %}

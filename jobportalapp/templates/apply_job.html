@@ -6,6 +6,8 @@
         <h2 class="mb-3 text-primary fw-bold">Apply for: {{ job.title }}</h2>
         <p class="mb-3"><strong>Company:</strong> {{ job.company_name }}</p>
         <p class="mb-4"><strong>Location:</strong> {{ job.location }}</p>
+         <p><strong>Job Description:</strong></p>
+                    <p>{{ job.description|linebreaks }}</p>
 
         <form method="post" enctype="multipart/form-data" novalidate>
             {% csrf_token %}
